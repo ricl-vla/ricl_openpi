@@ -59,16 +59,10 @@ class Policy(BasePolicy):
             "state": inputs["state"],
             "actions": self._sample_actions(sample_rng, _model.Observation.from_dict(inputs), **self._sample_kwargs),
         }
-        # TODO: del at cleanup
-        # print(f'infer 1 {[(k, v.shape, v.dtype, type(v)) for k, v in outputs.items()]}')
-        # infer 1 [('state', (1, 8), dtype('float32'), <class 'jaxlib.xla_extension.ArrayImpl'>), ('actions', (1, 256), dtype('float32'), <class 'jaxlib.xla_extension.ArrayImpl'>)]
 
         # Unbatch and convert to np.ndarray.
         outputs = jax.tree.map(lambda x: np.asarray(x[0, ...]), outputs)
         print(f'outputs: {outputs}')
-        # TODO: del at cleanup
-        # print(f'infer 2 {[(k, v.shape, v.dtype, type(v)) for k, v in outputs.items()]}')
-        # infer 2 [('actions', (256,), dtype('float32'), <class 'numpy.ndarray'>), ('state', (8,), dtype('float32'), <class 'numpy.ndarray'>)]
         final_outputs = self._output_transform(outputs)
         logger.info(f'final_outputs: {final_outputs}')
         return final_outputs
