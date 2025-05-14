@@ -63,9 +63,11 @@ Similarly, for retrieval data in a new task at test time, we expect the followin
 ```
 
 ## Downloading our datasets
-Priming (training) data: `git clone https://huggingface.co/ricl-vla/collected_demos_training ./preprocessing/collected_demos_training`
+Priming (training) data: `git clone https://huggingface.co/datasets/ricl-vla/collected_demos_training ./preprocessing/collected_demos_training`
 
-Retrieval (testing) data in many new tasks: `git clone https://huggingface.co/ricl-vla/collected_demos ./preprocessing/collected_demos`
+Retrieval (testing) data in many new tasks: `git clone https://huggingface.co/datasets/ricl-vla/collected_demos ./preprocessing/collected_demos`
+
+Both of the above can also be found at [this huggingface link](https://huggingface.co/ricl-vla).
 
 ## Preprocessing
 * First cd into the folder
@@ -109,6 +111,8 @@ You can serve it as follows:
 ```bash
 uv run scripts/serve_policy_ricl.py policy:checkpoint --policy.config=pi0_fast_droid_ricl --policy.dir=pi0_fast_droid_ricl_checkpoint --policy.demos_dir=preprocessing/collected_demos/{YYYY-MM-DD}_{new_task_prompt}
 ```
+
+Our checkpoint can also be found at [this huggingface link](https://huggingface.co/ricl-vla).
 
 ### On the laptop connected to the franka droid robot
 You also have to run the client in `examples/droid/main_ricl.py` on the laptop connexted to the franka droid robot following the original repository's instructions.
